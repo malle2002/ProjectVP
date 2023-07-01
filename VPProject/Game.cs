@@ -10,8 +10,8 @@ namespace VPProject
     [Serializable]
     public class Game
     {
-        public static int Money { get; set; } = 111111110;
-        public static int Gold { get; set; } = 250;
+        public int Money { get; set; } = 111111110;
+        public int Gold { get; set; } = 250;
         public List<Store> Stores { get; set; }
         public Game()
         {
@@ -23,10 +23,6 @@ namespace VPProject
             {
                 s.Update();
             }
-        }
-        public static void SaveGame()
-        {
-            Home.Serialize();
         }
     }
 }

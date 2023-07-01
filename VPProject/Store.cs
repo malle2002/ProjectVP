@@ -11,6 +11,12 @@ namespace VPProject
     [Serializable]
     public class Store
     {
+        public Game game { get; set; }
+        public CustomProgressBar ProgressBar;
+        public Button UpgradeButton;
+        public Label Label { get; set; }
+        public Label EarnLabel { get; set; }
+        public System.Windows.Forms.Timer Timer;
         public string Name { get; set; }
         public int Interval { get; set; }
         public int Num_Upgrades { get; set; } = 0;
@@ -21,17 +27,12 @@ namespace VPProject
         public int CostOfUpgrade { get; set; }
         public int IntervalReducer { get; set; } = 1;
         public int EarnMultiplier { get; set; } = 1;
-        public CustomProgressBar ProgressBar;
-        public Button UpgradeButton;
-        public System.Windows.Forms.Timer Timer;
-        public Home HomeForm { get; set; }
-        public Label Label { get; set; }
-        public Label EarnLabel { get; set; }
         public bool Clicked { get; set; } = false;
         public bool IsBought { get; set; }
         public bool hasManager { get; set; } = false;
+        [NonSerialized]
         Random random = new Random();
-        public Store(System.Windows.Forms.Timer timer, ProgressBar progressbar, Button upgradebutton, Home form, int baseMoney, double baseCost, int baseInterval, Label label, Label earnLabel)
+        public Store(System.Windows.Forms.Timer timer, ProgressBar progressbar, Button upgradebutton, int baseMoney, double baseCost, int baseInterval, Label label, Label earnLabel, Game Game, bool isbought)
         {
             Timer = timer;
             ProgressBar = (CustomProgressBar)progressbar;
@@ -40,10 +41,11 @@ namespace VPProject
             BaseMoney = baseMoney;
             MoneyMaking = BaseMoney;
             BaseInterval = baseInterval;
-            HomeForm = form;
             Label = label;
             EarnLabel = earnLabel;
             Timer.Enabled = false;
+            game = Game;
+            IsBought = isbought;
             CostOfUpgrade = (int)Math.Ceiling(BaseCost);
             ClickProgressBarConfiguration();
             Update();
@@ -54,18 +56,16 @@ namespace VPProject
             MoneyMaking = BaseMoney * (Num_Upgrades + 1) * EarnMultiplier;
             CostOfUpgrade = (int)(Num_Upgrades == 0 ? Math.Ceiling(BaseCost) : Math.Ceiling(1.07 * CostOfUpgrade));
             Timer.Interval = Interval != 0 ? Interval : 1;
-            HomeForm.Update();
             Label.Text = $"Level: {Num_Upgrades}";
             EarnLabel.Text = $"Earns you: ${MoneyMaking}";
             UpdateButtons();
-            Game.SaveGame();
         }
         public void UpdateButtons()
         {
             if (!IsBought)
             {
                 UpgradeButton.Text = $"Buy ${BaseCost}";
-                if (BaseCost > Game.Money)
+                if (BaseCost > game.Money)
                 {
                     UpgradeButton.Enabled = false;
                 }
@@ -77,7 +77,7 @@ namespace VPProject
             else
             {
                 UpgradeButton.Text = $"Upgrade ${CostOfUpgrade}";
-                if (CostOfUpgrade > Game.Money)
+                if (CostOfUpgrade > game.Money)
                 {
                     UpgradeButton.Enabled = false;
                 }
@@ -104,7 +104,7 @@ namespace VPProject
                             ProgressBar.Value = 0;
                             ButtonTimer.Stop();
                             Clicked = false;
-                            Game.Money += MoneyMaking;
+                            game.Money += MoneyMaking;
                             Update();
                             i = 0;
                         }
@@ -130,7 +130,7 @@ namespace VPProject
                 if (ProgressBar.Value == 100)
                 {
                     ProgressBar.Value = 0;
-                    Game.Money += MoneyMaking;
+                    game.Money += MoneyMaking;
                     Update();
                 }
                 else
@@ -147,13 +147,13 @@ namespace VPProject
                 if (IsBought)
                 {
                     UpgradeButton.Text = "Upgrade";
-                    if (Game.Money >= CostOfUpgrade)
+                    if (game.Money >= CostOfUpgrade)
                     {
                         Num_Upgrades++;
-                        Game.Money -= CostOfUpgrade;
+                        game.Money -= CostOfUpgrade;
                         if (Num_Upgrades % 25 == 0)
                         {
-                            Game.Gold += 25;
+                            game.Gold += 25;
                             if (random.Next(2) == 0)
                             {
                                 EarnMultiplier *= 3;
@@ -168,9 +168,9 @@ namespace VPProject
                 }
                 else
                 {
-                    if (Game.Money >= BaseCost)
+                    if (game.Money >= BaseCost)
                     {
-                        Game.Money -= (int)Math.Ceiling(BaseCost);
+                        game.Money -= (int)Math.Ceiling(BaseCost);
                         IsBought = true;
                         Update();
                     }
