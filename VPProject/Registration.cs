@@ -8,11 +8,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace VPProject
 {
     public partial class Registration : Form
     {
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
         SqlConnection connection;
         SqlDataReader dr;
         public Registration()
@@ -42,9 +50,10 @@ namespace VPProject
                     else
                     {
                         dr.Close();
-                        cmd = new SqlCommand("INSERT INTO Users (username,password) VALUES(@username,@password)", connection);
+                        cmd = new SqlCommand($"INSERT INTO Users (username,password,lastlogin) VALUES(@username,@password,@date)", connection);
                         cmd.Parameters.AddWithValue("username", tbUsername.Text);
                         cmd.Parameters.AddWithValue("password", tbPassword.Text);
+                        cmd.Parameters.AddWithValue("date", DateTime.Now);
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Your Account is created . Please login now.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Hide();
@@ -73,6 +82,15 @@ namespace VPProject
         private void CloseButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
+        }
+
+        private void panel1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
         }
     }
 }

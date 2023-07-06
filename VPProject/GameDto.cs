@@ -12,5 +12,7 @@ namespace VPProject
         public int Money { get; set; }
         public int Gold { get; set; }
         public List<StoreDto> Stores { get; set; }
+        public bool HasBoughtEverythingX3 { get; set; }
+        public bool HasBoughtEverything2 { get; set; }
     }
 }

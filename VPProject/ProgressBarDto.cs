@@ -19,38 +19,6 @@ namespace VPProject
         public int Minimum { get; set; }
         public int Maximum { get; set; }
         public int Value { get; set; }
-
-        // Serialization
-        public string SerializeProgressBar(ProgressBar progressBar)
-        {
-            ProgressBarDto dto = new ProgressBarDto
-            {
-                Minimum = progressBar.Minimum,
-                Maximum = progressBar.Maximum,
-                Value = progressBar.Value
-            };
-
-            using (MemoryStream memoryStream = new MemoryStream())
-            {
-                BinaryFormatter formatter = new BinaryFormatter();
-                formatter.Serialize(memoryStream, dto);
-                return Convert.ToBase64String(memoryStream.ToArray());
-            }
-        }
-
-        // Deserialization
-        public void DeserializeProgressBar(string serializedData, ProgressBar progressBar)
-        {
-            byte[] data = Convert.FromBase64String(serializedData);
-
-            using (MemoryStream memoryStream = new MemoryStream(data))
-            {
-                BinaryFormatter formatter = new BinaryFormatter();
-                ProgressBarDto dto = (ProgressBarDto)formatter.Deserialize(memoryStream);
-                progressBar.Minimum = dto.Minimum;
-                progressBar.Maximum = dto.Maximum;
-                progressBar.Value = dto.Value;
-            }
-        }
+        public string Text { get; set; }
     }
 }

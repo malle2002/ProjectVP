@@ -29,6 +29,7 @@ namespace VPProject
         public bool Clicked { get; set; }
         public bool IsBought { get; set; }
         public bool hasManager { get; set; }
+        public bool hasBoughtMultiplier { get; set; }
         public GameDto game { get; set; }
     }
 }

@@ -30,6 +30,7 @@ namespace VPProject
         public bool Clicked { get; set; } = false;
         public bool IsBought { get; set; }
         public bool hasManager { get; set; } = false;
+        public bool hasBoughtMultiplier { get; set; } = false;
         [NonSerialized]
         Random random = new Random();
         public Store(System.Windows.Forms.Timer timer, ProgressBar progressbar, Button upgradebutton, int baseMoney, double baseCost, int baseInterval, Label label, Label earnLabel, Game Game, bool isbought)
@@ -54,11 +55,12 @@ namespace VPProject
         {
             Interval = BaseInterval / 100;
             MoneyMaking = BaseMoney * (Num_Upgrades + 1) * EarnMultiplier;
-            CostOfUpgrade = (int)(Num_Upgrades == 0 ? Math.Ceiling(BaseCost) : Math.Ceiling(1.07 * CostOfUpgrade));
+            CostOfUpgrade = (int)(Num_Upgrades == 0 ? Math.Ceiling(BaseCost) : BaseCost);
             Timer.Interval = Interval != 0 ? Interval : 1;
             Label.Text = $"Level: {Num_Upgrades}";
             EarnLabel.Text = $"Earns you: ${MoneyMaking}";
             UpdateButtons();
+            game.UpdateLabel();
         }
         public void UpdateButtons()
         {
@@ -91,7 +93,7 @@ namespace VPProject
         {
             ProgressBar.MouseClick += (sender, e) =>
             {
-                if (!Timer.Enabled && Clicked == false && IsBought)
+                if (!Timer.Enabled && Clicked == false && IsBought && !hasManager)
                 {
                     Clicked = true;
                     System.Windows.Forms.Timer ButtonTimer = new System.Windows.Forms.Timer();
@@ -124,18 +126,19 @@ namespace VPProject
         {
             hasManager = true;
             Clicked = false;
+            int i = 0;
             Timer.Tick += (sender, e) =>
             {
-
                 if (ProgressBar.Value == 100)
                 {
                     ProgressBar.Value = 0;
                     game.Money += MoneyMaking;
+                    i = 0;
                     Update();
                 }
                 else
                 {
-                    ProgressBar.PerformStep();
+                    ProgressBar.Value = ++i;
                 }
             };
             Timer.Start();
@@ -146,22 +149,16 @@ namespace VPProject
             {
                 if (IsBought)
                 {
-                    UpgradeButton.Text = "Upgrade";
                     if (game.Money >= CostOfUpgrade)
                     {
                         Num_Upgrades++;
+                        BaseCost = Math.Ceiling(BaseCost * 1.07);
                         game.Money -= CostOfUpgrade;
                         if (Num_Upgrades % 25 == 0)
                         {
                             game.Gold += 25;
-                            if (random.Next(2) == 0)
-                            {
-                                EarnMultiplier *= 3;
-                            }
-                            else
-                            {
-                                IntervalReducer *= 3;
-                            }
+                            EarnMultiplier *= 3;
+
                         }
                         Update();
                     }

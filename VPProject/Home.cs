@@ -15,15 +15,31 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 using VPProject;
+using System.Data.SqlClient;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace VPProject
 {
+    [Serializable]
     public partial class Home : Form
     {
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
         public Game game { get; set; }
-        public Home()
+        public User user { get; set; }
+        SqlConnection connection;
+        public Home(User user2)
         {
+            connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\atanasPC\source\repos\VPProject\VPProject\Database1.mdf;Integrated Security=True");
+            connection.Open();
+            user = user2;
             InitializeComponent();
             this.DoubleBuffered = true;
             Deserialize();
@@ -36,19 +52,21 @@ namespace VPProject
             Lemonade.Configuration();
             game.Stores.Add(Lemonade);
 
-            Store NewspaperShop = new Store(NewspaperTimer, NewspaperProgressBar, NewspaperButton, 60, 60, 18000, NewspaperLevel, NewspaperEarnsYouLabel,game,false);
+            Store NewspaperShop = new Store(NewspaperTimer, NewspaperProgressBar, NewspaperButton, 60, 60, 15000, NewspaperLevel, NewspaperEarnsYouLabel,game,false);
             NewspaperShop.Name = "Newspaper Shop";
             NewspaperShop.game = game;
             NewspaperShop.Configuration();
             game.Stores.Add(NewspaperShop);
+
+            Store CarWash = new Store(CarWashTimer, CarWashProgressBar, CarWashButton, 720, 720, 30000, CarWashLevel, CarWashEarnsYouLabel, game, false);
+            CarWash.Name = "Car Wash";
+            CarWash.game = game;
+            CarWash.Configuration();
+            game.Stores.Add(CarWash);
         }
         public void Update()
         {     
             game.Update();
-        }
-        public void Update2()
-        {
-            InfoLabel.Text = $"Money: ${this.game.Money} \t \t \t Gold: {this.game.Gold}";
         }
         private void CloseButton_Click(object sender, EventArgs e)
         {
@@ -59,12 +77,19 @@ namespace VPProject
             try
             {
                 IFormatter formatter = new BinaryFormatter();
-                FileStream fileStream = new FileStream($"C:\\CapitalistGame\\SavedGame.sg", FileMode.Create);
+                FileStream fileStream = new FileStream($"C:\\CapitalistGame\\SavedGame{user.Id}.sg",
+                                                       FileMode.Create,
+                                                       FileAccess.Write,
+                                                       FileShare.None,
+                                                       bufferSize:4096,
+                                                       useAsync: true);
                 List<StoreDto> newListStoreDto = new List<StoreDto>();
                 GameDto gameDto = new GameDto
                 {
                     Money = game.Money,
-                    Gold = game.Gold
+                    Gold = game.Gold,
+                    HasBoughtEverything2 = game.HasBoughtEverything2,
+                    HasBoughtEverythingX3 = game.HasBoughtEverythingX3
                 };
                 game.Stores.ForEach(x =>
                 {
@@ -76,6 +101,7 @@ namespace VPProject
                             Value = x.ProgressBar.Value,
                             Minimum = x.ProgressBar.Minimum,
                             Maximum = x.ProgressBar.Maximum,
+                            Text = x.ProgressBar.Text
                         },
                         Button = new ButtonDto
                         {
@@ -122,7 +148,8 @@ namespace VPProject
                         Clicked = x.Clicked,
                         IsBought = x.IsBought,
                         hasManager = x.hasManager,
-                        game = gameDto
+                        game = gameDto,
+                        hasBoughtMultiplier = x.hasBoughtMultiplier,
                     });
                 });
                 gameDto.Stores = newListStoreDto;
@@ -138,79 +165,82 @@ namespace VPProject
         private void Deserialize()
         {
 
-            if (File.Exists($"C:\\CapitalistGame\\SavedGame.sg"))
+            if (File.Exists($"C:\\CapitalistGame\\SavedGame{user.Id}.sg"))
             {
                 try
                 {
                     IFormatter formatter = new BinaryFormatter();
-                    FileStream fileStream = new FileStream($"C:\\CapitalistGame\\SavedGame.sg", FileMode.Open);
+                    FileStream fileStream = new FileStream($"C:\\CapitalistGame\\SavedGame{user.Id}.sg", FileMode.Open);
                     GameDto gameDto = (GameDto)formatter.Deserialize(fileStream);
                     List<Store> newListStore = new List<Store>();
-                    game = new Game
+                    game = new Game(InfoLabel);
+                    AddStores();
+                    game.Money = gameDto.Money;
+                    game.Gold = gameDto.Gold;
+                    game.HasBoughtEverything2 = gameDto.HasBoughtEverything2;
+                    game.HasBoughtEverythingX3 = gameDto.HasBoughtEverythingX3;
+                    game.Stores.ElementAt(0).ProgressBar.Value = gameDto.Stores.ElementAt(0).ProgressBar.Value;
+                    game.Stores.ElementAt(0).UpgradeButton.Text = gameDto.Stores.ElementAt(0).Button.Text;
+                    game.Stores.ElementAt(0).Label.Text = gameDto.Stores.ElementAt(0).Label.Text;
+                    game.Stores.ElementAt(0).EarnLabel.Text = gameDto.Stores.ElementAt(0).Label2.Text;
+                    game.Stores.ElementAt(0).Interval = gameDto.Stores.ElementAt(0).Interval;
+                    game.Stores.ElementAt(0).MoneyMaking = gameDto.Stores.ElementAt(0).MoneyMaking;
+                    game.Stores.ElementAt(0).IsBought = gameDto.Stores.ElementAt(0).IsBought;
+                    game.Stores.ElementAt(0).BaseCost = gameDto.Stores.ElementAt(0).BaseCost;
+                    game.Stores.ElementAt(0).Clicked = gameDto.Stores.ElementAt(0).Clicked;
+                    game.Stores.ElementAt(0).BaseInterval = gameDto.Stores.ElementAt(0).BaseInterval;
+                    game.Stores.ElementAt(0).CostOfUpgrade = gameDto.Stores.ElementAt(0).CostOfUpgrade;
+                    game.Stores.ElementAt(0).EarnMultiplier = gameDto.Stores.ElementAt(0).EarnMultiplier;
+                    game.Stores.ElementAt(0).IntervalReducer = gameDto.Stores.ElementAt(0).IntervalReducer;
+                    game.Stores.ElementAt(0).hasManager = gameDto.Stores.ElementAt(0).hasManager;
+                    if (game.Stores.ElementAt(0).hasManager)
                     {
-                        Money = gameDto.Money,
-                        Gold = gameDto.Gold
-                    };
-                    gameDto.Stores.ForEach(x =>
+                        game.Stores.ElementAt(0).ManagerSet();
+                    }
+                    game.Stores.ElementAt(0).hasBoughtMultiplier = gameDto.Stores.ElementAt(0).hasBoughtMultiplier;
+                    game.Stores.ElementAt(0).Num_Upgrades = gameDto.Stores.ElementAt(0).Num_Upgrades;
+
+                    game.Stores.ElementAt(1).ProgressBar.Value = gameDto.Stores.ElementAt(1).ProgressBar.Value;
+                    game.Stores.ElementAt(1).UpgradeButton.Text = gameDto.Stores.ElementAt(1).Button.Text;
+                    game.Stores.ElementAt(1).Label.Text = gameDto.Stores.ElementAt(1).Label.Text;
+                    game.Stores.ElementAt(1).EarnLabel.Text = gameDto.Stores.ElementAt(1).Label2.Text;
+                    game.Stores.ElementAt(1).Interval = gameDto.Stores.ElementAt(1).Interval;
+                    game.Stores.ElementAt(1).MoneyMaking = gameDto.Stores.ElementAt(1).MoneyMaking;
+                    game.Stores.ElementAt(1).IsBought = gameDto.Stores.ElementAt(1).IsBought;
+                    game.Stores.ElementAt(1).BaseCost = gameDto.Stores.ElementAt(1).BaseCost;
+                    game.Stores.ElementAt(1).Clicked = gameDto.Stores.ElementAt(1).Clicked;
+                    game.Stores.ElementAt(1).BaseInterval = gameDto.Stores.ElementAt(1).BaseInterval;
+                    game.Stores.ElementAt(1).CostOfUpgrade = gameDto.Stores.ElementAt(1).CostOfUpgrade;
+                    game.Stores.ElementAt(1).EarnMultiplier = gameDto.Stores.ElementAt(1).EarnMultiplier;
+                    game.Stores.ElementAt(1).IntervalReducer = gameDto.Stores.ElementAt(1).IntervalReducer;
+                    game.Stores.ElementAt(1).hasManager = gameDto.Stores.ElementAt(1).hasManager;
+                    if (game.Stores.ElementAt(1).hasManager)
                     {
-                        ProgressBar pbd = new CustomProgressBar
-                        {
-                            Name = x.ProgressBar.Name,
-                            Value = x.ProgressBar.Value,
-                            Minimum = x.ProgressBar.Minimum,
-                            Maximum = x.ProgressBar.Maximum
-                        };
-                        Button bd = new Button
-                        {
-                            Text = x.Button.Text,
-                            Left = x.Button.Left,
-                            Top = x.Button.Top,
-                            Width = x.Button.Width,
-                            Height = x.Button.Height,
-                            Name = x.Button.Name
-                        };
-                        Timer dt = new Timer
-                        {
-                            Interval = x.Timer.Interval,
-                            Enabled = x.Timer.Enabled
-                        };
-                        System.Windows.Forms.Label ld = new System.Windows.Forms.Label
-                        {
-                            Text = x.Label.Text,
-                            Left = x.Label.Left,
-                            Top = x.Label.Top,
-                            Width = x.Label.Width,
-                            Height = x.Label.Height,
-                            Name = x.Label.Name
-                        };
-                        System.Windows.Forms.Label ld2 = new System.Windows.Forms.Label
-                        {
-                            Text = x.Label2.Text,
-                            Left = x.Label2.Left,
-                            Top = x.Label2.Top,
-                            Width = x.Label2.Width,
-                            Height = x.Label2.Height,
-                            Name = x.Label2.Name
-                        };
-                        newListStore.Add(new Store(dt, pbd, bd, x.BaseMoney, x.BaseCost, x.BaseInterval, ld, ld2, game, x.IsBought)
-                        {
-                            Name = x.Name,
-                            Interval = x.Interval,
-                            Num_Upgrades = x.Num_Upgrades,
-                            BaseCost = x.BaseCost,
-                            BaseMoney = x.BaseMoney,
-                            MoneyMaking = x.MoneyMaking,
-                            BaseInterval = x.BaseInterval,
-                            CostOfUpgrade = x.CostOfUpgrade,
-                            IntervalReducer = x.IntervalReducer,
-                            EarnMultiplier = x.EarnMultiplier,
-                            Clicked = x.Clicked,
-                            IsBought = x.IsBought,
-                            hasManager = x.hasManager,
-                            game = game
-                        });
-                    });
-                    game.Stores = newListStore;
+                        game.Stores.ElementAt(1).ManagerSet();
+                    }
+                    game.Stores.ElementAt(1).hasBoughtMultiplier = gameDto.Stores.ElementAt(1).hasBoughtMultiplier;
+                    game.Stores.ElementAt(1).Num_Upgrades = gameDto.Stores.ElementAt(1).Num_Upgrades;
+
+                    game.Stores.ElementAt(2).ProgressBar.Value = gameDto.Stores.ElementAt(2).ProgressBar.Value;
+                    game.Stores.ElementAt(2).UpgradeButton.Text = gameDto.Stores.ElementAt(2).Button.Text;
+                    game.Stores.ElementAt(2).Label.Text = gameDto.Stores.ElementAt(2).Label.Text;
+                    game.Stores.ElementAt(2).EarnLabel.Text = gameDto.Stores.ElementAt(2).Label2.Text;
+                    game.Stores.ElementAt(2).Interval = gameDto.Stores.ElementAt(2).Interval;
+                    game.Stores.ElementAt(2).MoneyMaking = gameDto.Stores.ElementAt(2).MoneyMaking;
+                    game.Stores.ElementAt(2).IsBought = gameDto.Stores.ElementAt(2).IsBought;
+                    game.Stores.ElementAt(2).BaseCost = gameDto.Stores.ElementAt(2).BaseCost;
+                    game.Stores.ElementAt(2).Clicked = gameDto.Stores.ElementAt(2).Clicked;
+                    game.Stores.ElementAt(2).BaseInterval = gameDto.Stores.ElementAt(2).BaseInterval;
+                    game.Stores.ElementAt(2).CostOfUpgrade = gameDto.Stores.ElementAt(2).CostOfUpgrade;
+                    game.Stores.ElementAt(2).EarnMultiplier = gameDto.Stores.ElementAt(2).EarnMultiplier;
+                    game.Stores.ElementAt(2).IntervalReducer = gameDto.Stores.ElementAt(2).IntervalReducer;
+                    game.Stores.ElementAt(2).hasManager = gameDto.Stores.ElementAt(2).hasManager;
+                    if (game.Stores.ElementAt(2).hasManager)
+                    {
+                        game.Stores.ElementAt(2).ManagerSet();
+                    }
+                    game.Stores.ElementAt(2).hasBoughtMultiplier = gameDto.Stores.ElementAt(2).hasBoughtMultiplier;
+                    game.Stores.ElementAt(2).Num_Upgrades = gameDto.Stores.ElementAt(2).Num_Upgrades;
                     game.Update();
                 }
                 catch (Exception ex)
@@ -218,11 +248,27 @@ namespace VPProject
                     MessageBox.Show(ex.Message);
                     MessageBox.Show("1");
                 }
-                
+                int AfkMoney = 0;
+                game.Stores.ForEach(x =>
+                {
+                    if (x.hasManager)
+                    {
+                        DateTime now = DateTime.Now;
+                        double span = now.Subtract(user.LastTimeLogged).TotalMilliseconds;
+                        
+                        AfkMoney += (int)(span / x.BaseInterval * x.MoneyMaking);
+                    }
+
+
+                });
+                game.Money += AfkMoney;
+                MessageBox.Show($"You have gotten ${AfkMoney} since last login");
+                SqlCommand cmd = new SqlCommand($"UPDATE Users SET lastlogin = '{DateTime.Now}' WHERE Id = '{user.Id}'", connection);
+                cmd.ExecuteNonQuery();
             }
             else
             {
-                game = new Game();
+                game = new Game(InfoLabel);
                 AddStores();
                 Serialize();
             }
@@ -230,7 +276,48 @@ namespace VPProject
 
         private void Home_FormClosing(object sender, FormClosingEventArgs e)
         {
+            user.LastTimeLogged = DateTime.Now;
+            while (!IsFileReady($"C:\\CapitalistGame\\SavedGame{user.Id}.sg"));
             Serialize();
+        }
+        public static bool IsFileReady(string filename)
+        {
+            // If the file can be opened for exclusive access it means that the file
+            // is no longer locked by another process.
+            try
+            {
+                using (FileStream inputStream = File.Open(filename, FileMode.Open, FileAccess.Read, FileShare.None))
+                    return inputStream.Length > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        private void TopPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        private void ManagersButton_Click(object sender, EventArgs e)
+        {
+            ManagersForm newform = new ManagersForm(game);
+            newform.Show();
+        }
+
+        private void Home_Load(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void ShopButton_Click(object sender, EventArgs e)
+        {
+            ShopForm form = new ShopForm(game);
+            form.Show();
         }
     }
 }
