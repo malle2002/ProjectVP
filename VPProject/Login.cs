@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.IO;
 
 namespace VPProject
 {
@@ -30,7 +31,19 @@ namespace VPProject
 
         private void Login_Load(object sender, EventArgs e)
         {
-            connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\atanasPC\source\repos\VPProject\VPProject\Database1.mdf;Integrated Security=True");
+            string path = Path.GetFullPath(Environment.CurrentDirectory);
+            string databaseName = "Database1.mdf";
+            string fullpath = path + @"\" + databaseName;
+            if (File.Exists(fullpath))
+            {
+                connection = new SqlConnection(@"Data 
+  Source(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + path + @"\" + databaseName +
+                "");
+            }
+            else
+            {
+                throw new Exception("Database Not Found :(");
+            }
             connection.Open();
         }
 
