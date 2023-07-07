@@ -99,7 +99,7 @@
             this.LemonadeButton.Name = "LemonadeButton";
             this.LemonadeButton.Size = new System.Drawing.Size(149, 43);
             this.LemonadeButton.TabIndex = 27;
-            this.LemonadeButton.Text = "Buy $5000";
+            this.LemonadeButton.Text = "Buy 50 Gold";
             this.LemonadeButton.UseVisualStyleBackColor = false;
             this.LemonadeButton.Click += new System.EventHandler(this.LemonadeButton_Click);
             // 
@@ -113,7 +113,7 @@
             this.NewspaperButton.Name = "NewspaperButton";
             this.NewspaperButton.Size = new System.Drawing.Size(149, 43);
             this.NewspaperButton.TabIndex = 29;
-            this.NewspaperButton.Text = "Buy $10000";
+            this.NewspaperButton.Text = "Buy 100 Gold";
             this.NewspaperButton.UseVisualStyleBackColor = false;
             this.NewspaperButton.Click += new System.EventHandler(this.NewspaperButton_Click);
             // 
@@ -137,7 +137,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(149, 43);
             this.button2.TabIndex = 31;
-            this.button2.Text = "Buy $15000";
+            this.button2.Text = "Buy 150 Gold";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -161,7 +161,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(149, 43);
             this.button3.TabIndex = 33;
-            this.button3.Text = "Buy $25000";
+            this.button3.Text = "Buy 250 Gold";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -185,7 +185,7 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(149, 43);
             this.button4.TabIndex = 35;
-            this.button4.Text = "Buy $1000000";
+            this.button4.Text = "Buy 1000 Gold";
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 

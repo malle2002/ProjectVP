@@ -42,7 +42,7 @@ namespace VPProject
 
         private void LemonadeButton_Click(object sender, EventArgs e)
         {
-            if (Game.Money >= 5000)
+            if (Game.Gold >= 50)
             {
                 Game.Stores.Find(x=>x.Name.Equals("Lemonade")).hasBoughtMultiplier = true;
                 Game.Stores.Find(x => x.Name.Equals("Lemonade")).EarnMultiplier *= 3;
@@ -52,7 +52,7 @@ namespace VPProject
 
         private void NewspaperButton_Click(object sender, EventArgs e)
         {
-            if (Game.Money >= 10000)
+            if (Game.Gold >= 100)
             {
                 Game.Stores.Find(x => x.Name.Equals("Newspaper Shop")).hasBoughtMultiplier = true;
                 Game.Stores.Find(x => x.Name.Equals("Newspaper Shop")).EarnMultiplier *= 3;
@@ -62,7 +62,7 @@ namespace VPProject
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (Game.Money >= 15000)
+            if (Game.Gold >= 150)
             {
                 Game.Stores.Find(x=>x.Name.Equals("Car Wash")).hasBoughtMultiplier = true;
                 Game.Stores.Find(x => x.Name.Equals("Car Wash")).EarnMultiplier *= 3;
@@ -72,7 +72,7 @@ namespace VPProject
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (Game.Money >= 25000)
+            if (Game.Gold >= 250)
             {
                 Game.HasBoughtEverythingX3 = true;
                 Game.Stores.ForEach(x => x.EarnMultiplier *= 3);
@@ -82,7 +82,7 @@ namespace VPProject
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (Game.Money >= 1000000)
+            if (Game.Gold >= 1000)
             {
                 Game.HasBoughtEverything2 = true;
                 Game.Stores.ForEach(x => x.EarnMultiplier *= 3);

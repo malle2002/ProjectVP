@@ -34,11 +34,11 @@ namespace VPProject
             string path = Path.GetFullPath(Environment.CurrentDirectory);
             string databaseName = "Database1.mdf";
             string fullpath = path + @"\" + databaseName;
+            MessageBox.Show(fullpath);
             if (File.Exists(fullpath))
             {
-                connection = new SqlConnection(@"Data 
-  Source(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + path + @"\" + databaseName +
-                "");
+                connection = new SqlConnection($"Server=DESKTOP-5OTFSPI;Database=Users;User Id=sa;Password=ASds12:D;");
+                //connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + path + @"\" + databaseName + "; Integrated Security=True");
             }
             else
             {
@@ -69,9 +69,7 @@ namespace VPProject
                         cmd.Parameters.AddWithValue("date", DateTime.Now);
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Your Account is created . Please login now.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.Hide();
-                        Login login = new Login();
-                        login.ShowDialog();
+                        this.DialogResult = DialogResult.OK;
                     }
                 }
                 else
@@ -87,14 +85,12 @@ namespace VPProject
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            Login login = new Login();
-            login.ShowDialog();
+            this.DialogResult = DialogResult.OK;
         }
 
         private void CloseButton_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
+            this.DialogResult = DialogResult.OK;
         }
 
         private void panel1_MouseMove(object sender, MouseEventArgs e)

@@ -11,8 +11,8 @@ namespace VPProject
     [Serializable]
     public class Game
     {
-        public int Money { get; set; } = 111111110;
-        public int Gold { get; set; } = 250;
+        public int Money { get; set; } = 0;
+        public int Gold { get; set; } = 0;
         public List<Store> Stores { get; set; }
         public Label Label { get; set; }
         public bool HasBoughtEverythingX3 { get; set; }

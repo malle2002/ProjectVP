@@ -83,11 +83,39 @@ namespace VPProject
                     button2.Enabled = true;
                 }
             }
+            if (game.Stores.Find(x => x.Name.Equals("Car Wash")).hasManager)
+            {
+                button3.Enabled = false;
+            }
+            else
+            {
+                if (game.Money < 12500)
+                {
+                    button3.Enabled = false;
+                }
+                else
+                {
+                    button3.Enabled = true;
+                }
+            }
         }
 
         private void ManagersForm_Load(object sender, EventArgs e)
         {
             CheckButtons();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (game.Stores.Find(x => x.Name.Equals("Car Wash")).IsBought)
+            {
+                if (game.Money >= 12500)
+                {
+                    game.Stores.Find(x => x.Name.Equals("Car Wash")).ManagerSet();
+                    game.Money -= 12500;
+                    button2.Enabled = false;
+                }
+            }
         }
     }
 }
