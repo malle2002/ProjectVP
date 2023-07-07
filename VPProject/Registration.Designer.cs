@@ -110,6 +110,7 @@
             this.tbPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbPassword.Location = new System.Drawing.Point(207, 115);
             this.tbPassword.Name = "tbPassword";
+            this.tbPassword.PasswordChar = '*';
             this.tbPassword.Size = new System.Drawing.Size(149, 26);
             this.tbPassword.TabIndex = 3;
             // 
@@ -128,6 +129,7 @@
             this.tbRepeatPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbRepeatPassword.Location = new System.Drawing.Point(207, 161);
             this.tbRepeatPassword.Name = "tbRepeatPassword";
+            this.tbRepeatPassword.PasswordChar = '*';
             this.tbRepeatPassword.Size = new System.Drawing.Size(149, 26);
             this.tbRepeatPassword.TabIndex = 5;
             // 
