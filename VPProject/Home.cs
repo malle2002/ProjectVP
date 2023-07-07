@@ -40,11 +40,9 @@ namespace VPProject
             string path = Path.GetFullPath(Environment.CurrentDirectory);
             string databaseName = "Database1.mdf";
             string fullpath = path + @"\" + databaseName;
-            MessageBox.Show(fullpath);
             if (File.Exists(fullpath))
             {
-                connection = new SqlConnection($"Server=DESKTOP-5OTFSPI;Database=Users;User Id=sa;Password=ASds12:D;");
-                //connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + path + @"\" + databaseName + "; Integrated Security=True");
+                connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + path + @"\" + databaseName + "; Integrated Security=True");
             }
             else
             {

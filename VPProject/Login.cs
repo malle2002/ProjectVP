@@ -34,11 +34,9 @@ namespace VPProject
             string path = Path.GetFullPath(Environment.CurrentDirectory);
             string databaseName = "Database1.mdf";
             string fullpath = path + @"\" + databaseName;
-            MessageBox.Show(fullpath);
             if (File.Exists(fullpath))
             {
-                connection = new SqlConnection($"Server=DESKTOP-5OTFSPI;Database=Users;User Id=sa;Password=ASds12:D;");
-                //connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + path + @"\" + databaseName + "; Integrated Security=True");
+                connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + path + @"\" + databaseName + "; Integrated Security=True");
             }
             else
             {
@@ -69,6 +67,12 @@ namespace VPProject
                     this.Hide();
                     Home home = new Home(new User(dr.GetString(1), dr.GetInt32(0), Convert.ToDateTime(dr.GetValue(3).ToString())));
                     dr.Close();
+                    string dir = @"C:\CapitalistGame";
+                    // If directory does not exist, create it
+                    if (!Directory.Exists(dir))
+                    {
+                        Directory.CreateDirectory(dir);
+                    }
                     home.ShowDialog();
                     if(home.DialogResult == DialogResult.Cancel)
                     {
