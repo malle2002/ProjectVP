@@ -56,23 +56,65 @@ namespace VPProject
         }
         public void AddStores()
         {
-            Store Lemonade = new Store(LemonadeTimer, LemonadeProgressBar, LemonadeButton, 1, 3.738, 3000, LemonadeLevel, LemonadeEarnsYouLabel,game,true);
+            Store Lemonade = new Store(LemonadeTimer, LemonadeProgressBar, LemonadeButton, 1, 3.738, 600, LemonadeLevel, LemonadeEarnsYouLabel,game,true);
             Lemonade.Name = "Lemonade";
             Lemonade.game = game;
             Lemonade.Configuration();
             game.Stores.Add(Lemonade);
 
-            Store NewspaperShop = new Store(NewspaperTimer, NewspaperProgressBar, NewspaperButton, 60, 60, 15000, NewspaperLevel, NewspaperEarnsYouLabel,game,false);
+            Store NewspaperShop = new Store(NewspaperTimer, NewspaperProgressBar, NewspaperButton, 60, 60, 3000, NewspaperLevel, NewspaperEarnsYouLabel,game,false);
             NewspaperShop.Name = "Newspaper Shop";
             NewspaperShop.game = game;
             NewspaperShop.Configuration();
             game.Stores.Add(NewspaperShop);
 
-            Store CarWash = new Store(CarWashTimer, CarWashProgressBar, CarWashButton, 720, 720, 30000, CarWashLevel, CarWashEarnsYouLabel, game, false);
+            Store CarWash = new Store(CarWashTimer, CarWashProgressBar, CarWashButton, 720, 720, 6000, CarWashLevel, CarWashEarnsYouLabel, game, false);
             CarWash.Name = "Car Wash";
             CarWash.game = game;
             CarWash.Configuration();
             game.Stores.Add(CarWash);
+
+            Store Pizza = new Store(PizzaTimer, PizzaProgressBar, PizzaButton, 8640, 8640, 12000, PizzaLevel, PizzaEarnsYouLabel, game, false);
+            Pizza.Name = "Pizza Restaurant";
+            Pizza.game = game;
+            Pizza.Configuration();
+            game.Stores.Add(Pizza);
+
+            Store Donut = new Store(DonutTimer, DonutProgressBar, DonutButton, 103680, 103680, 24000, DonutLevel, DonutEarnsYouLabel, game, false);
+            Donut.Name = "Donut Shop";
+            Donut.game = game;
+            Donut.Configuration();
+            game.Stores.Add(Donut);
+
+            Store Shrimp = new Store(ShrimpTimer, ShrimpProgressBar, ShrimpButton, 1244160, 1244160, 96000, ShrimpLevel, ShrimpEarnsYouLabel, game, false);
+            Shrimp.Name = "Shrimp Shop";
+            Shrimp.game = game;
+            Shrimp.Configuration();
+            game.Stores.Add(Shrimp);
+
+            Store Hockey = new Store(HockeyTimer, HockeyProgressBar, HockeyButton, 14929920, 14929920, 384000, HockeyLevel, HockeyEarnsYouLabel, game, false);
+            Hockey.Name = "Hockey Team";
+            Hockey.game = game;
+            Hockey.Configuration();
+            game.Stores.Add(Hockey);
+
+            Store Movie = new Store(MovieTimer, MovieProgressBar, MovieButton, 179159040, 179159040, 1536000, MovieLevel, MovieEarnsYouLabel, game, false);
+            Movie.Name = "Movie Studio";
+            Movie.game = game;
+            Movie.Configuration();
+            game.Stores.Add(Movie);
+
+            Store Bank = new Store(BankTimer, BankProgressBar, BankButton, 350908480, 350908480, 3000000, BankLevel, BankEarnsYouLabel, game, false);
+            Bank.Name = "Bank";
+            Bank.game = game;
+            Bank.Configuration();
+            game.Stores.Add(Bank);
+
+            Store OilCompany = new Store(OilCompanyTimer, OilCompanyProgressBar, OilCompanyButton, 650908480, 650908480, 5000000, OilCompanyLevel, OilCompanyEarnsYouLabel, game, false);
+            OilCompany.Name = "Oil Company";
+            OilCompany.game = game;
+            OilCompany.Configuration();
+            game.Stores.Add(OilCompany);
         }
         public void Update()
         {     
@@ -251,6 +293,153 @@ namespace VPProject
                     }
                     game.Stores.ElementAt(2).hasBoughtMultiplier = gameDto.Stores.ElementAt(2).hasBoughtMultiplier;
                     game.Stores.ElementAt(2).Num_Upgrades = gameDto.Stores.ElementAt(2).Num_Upgrades;
+
+                    game.Stores.ElementAt(3).ProgressBar.Value = gameDto.Stores.ElementAt(3).ProgressBar.Value;
+                    game.Stores.ElementAt(3).UpgradeButton.Text = gameDto.Stores.ElementAt(3).Button.Text;
+                    game.Stores.ElementAt(3).Label.Text = gameDto.Stores.ElementAt(3).Label.Text;
+                    game.Stores.ElementAt(3).EarnLabel.Text = gameDto.Stores.ElementAt(3).Label2.Text;
+                    game.Stores.ElementAt(3).Interval = gameDto.Stores.ElementAt(3).Interval;
+                    game.Stores.ElementAt(3).MoneyMaking = gameDto.Stores.ElementAt(3).MoneyMaking;
+                    game.Stores.ElementAt(3).IsBought = gameDto.Stores.ElementAt(3).IsBought;
+                    game.Stores.ElementAt(3).BaseCost = gameDto.Stores.ElementAt(3).BaseCost;
+                    game.Stores.ElementAt(3).Clicked = gameDto.Stores.ElementAt(3).Clicked;
+                    game.Stores.ElementAt(3).BaseInterval = gameDto.Stores.ElementAt(3).BaseInterval;
+                    game.Stores.ElementAt(3).CostOfUpgrade = gameDto.Stores.ElementAt(3).CostOfUpgrade;
+                    game.Stores.ElementAt(3).EarnMultiplier = gameDto.Stores.ElementAt(3).EarnMultiplier;
+                    game.Stores.ElementAt(3).IntervalReducer = gameDto.Stores.ElementAt(3).IntervalReducer;
+                    game.Stores.ElementAt(3).hasManager = gameDto.Stores.ElementAt(3).hasManager;
+                    if (game.Stores.ElementAt(3).hasManager)
+                    {
+                        game.Stores.ElementAt(3).ManagerSet();
+                    }
+                    game.Stores.ElementAt(3).hasBoughtMultiplier = gameDto.Stores.ElementAt(3).hasBoughtMultiplier;
+                    game.Stores.ElementAt(3).Num_Upgrades = gameDto.Stores.ElementAt(3).Num_Upgrades;
+
+                    game.Stores.ElementAt(4).ProgressBar.Value = gameDto.Stores.ElementAt(4).ProgressBar.Value;
+                    game.Stores.ElementAt(4).UpgradeButton.Text = gameDto.Stores.ElementAt(4).Button.Text;
+                    game.Stores.ElementAt(4).Label.Text = gameDto.Stores.ElementAt(4).Label.Text;
+                    game.Stores.ElementAt(4).EarnLabel.Text = gameDto.Stores.ElementAt(4).Label2.Text;
+                    game.Stores.ElementAt(4).Interval = gameDto.Stores.ElementAt(4).Interval;
+                    game.Stores.ElementAt(4).MoneyMaking = gameDto.Stores.ElementAt(4).MoneyMaking;
+                    game.Stores.ElementAt(4).IsBought = gameDto.Stores.ElementAt(4).IsBought;
+                    game.Stores.ElementAt(4).BaseCost = gameDto.Stores.ElementAt(4).BaseCost;
+                    game.Stores.ElementAt(4).Clicked = gameDto.Stores.ElementAt(4).Clicked;
+                    game.Stores.ElementAt(4).BaseInterval = gameDto.Stores.ElementAt(4).BaseInterval;
+                    game.Stores.ElementAt(4).CostOfUpgrade = gameDto.Stores.ElementAt(4).CostOfUpgrade;
+                    game.Stores.ElementAt(4).EarnMultiplier = gameDto.Stores.ElementAt(4).EarnMultiplier;
+                    game.Stores.ElementAt(4).IntervalReducer = gameDto.Stores.ElementAt(4).IntervalReducer;
+                    game.Stores.ElementAt(4).hasManager = gameDto.Stores.ElementAt(4).hasManager;
+                    if (game.Stores.ElementAt(4).hasManager)
+                    {
+                        game.Stores.ElementAt(4).ManagerSet();
+                    }
+                    game.Stores.ElementAt(4).hasBoughtMultiplier = gameDto.Stores.ElementAt(4).hasBoughtMultiplier;
+                    game.Stores.ElementAt(4).Num_Upgrades = gameDto.Stores.ElementAt(4).Num_Upgrades;
+
+                    game.Stores.ElementAt(5).ProgressBar.Value = gameDto.Stores.ElementAt(5).ProgressBar.Value;
+                    game.Stores.ElementAt(5).UpgradeButton.Text = gameDto.Stores.ElementAt(5).Button.Text;
+                    game.Stores.ElementAt(5).Label.Text = gameDto.Stores.ElementAt(5).Label.Text;
+                    game.Stores.ElementAt(5).EarnLabel.Text = gameDto.Stores.ElementAt(5).Label2.Text;
+                    game.Stores.ElementAt(5).Interval = gameDto.Stores.ElementAt(5).Interval;
+                    game.Stores.ElementAt(5).MoneyMaking = gameDto.Stores.ElementAt(5).MoneyMaking;
+                    game.Stores.ElementAt(5).IsBought = gameDto.Stores.ElementAt(5).IsBought;
+                    game.Stores.ElementAt(5).BaseCost = gameDto.Stores.ElementAt(5).BaseCost;
+                    game.Stores.ElementAt(5).Clicked = gameDto.Stores.ElementAt(5).Clicked;
+                    game.Stores.ElementAt(5).BaseInterval = gameDto.Stores.ElementAt(5).BaseInterval;
+                    game.Stores.ElementAt(5).CostOfUpgrade = gameDto.Stores.ElementAt(5).CostOfUpgrade;
+                    game.Stores.ElementAt(5).EarnMultiplier = gameDto.Stores.ElementAt(5).EarnMultiplier;
+                    game.Stores.ElementAt(5).IntervalReducer = gameDto.Stores.ElementAt(5).IntervalReducer;
+                    game.Stores.ElementAt(5).hasManager = gameDto.Stores.ElementAt(5).hasManager;
+                    if (game.Stores.ElementAt(5).hasManager)
+                    {
+                        game.Stores.ElementAt(5).ManagerSet();
+                    }
+                    game.Stores.ElementAt(5).hasBoughtMultiplier = gameDto.Stores.ElementAt(5).hasBoughtMultiplier;
+                    game.Stores.ElementAt(5).Num_Upgrades = gameDto.Stores.ElementAt(5).Num_Upgrades;
+
+                    game.Stores.ElementAt(6).ProgressBar.Value = gameDto.Stores.ElementAt(6).ProgressBar.Value;
+                    game.Stores.ElementAt(6).UpgradeButton.Text = gameDto.Stores.ElementAt(6).Button.Text;
+                    game.Stores.ElementAt(6).Label.Text = gameDto.Stores.ElementAt(6).Label.Text;
+                    game.Stores.ElementAt(6).EarnLabel.Text = gameDto.Stores.ElementAt(6).Label2.Text;
+                    game.Stores.ElementAt(6).Interval = gameDto.Stores.ElementAt(6).Interval;
+                    game.Stores.ElementAt(6).MoneyMaking = gameDto.Stores.ElementAt(6).MoneyMaking;
+                    game.Stores.ElementAt(6).IsBought = gameDto.Stores.ElementAt(6).IsBought;
+                    game.Stores.ElementAt(6).BaseCost = gameDto.Stores.ElementAt(6).BaseCost;
+                    game.Stores.ElementAt(6).Clicked = gameDto.Stores.ElementAt(6).Clicked;
+                    game.Stores.ElementAt(6).BaseInterval = gameDto.Stores.ElementAt(6).BaseInterval;
+                    game.Stores.ElementAt(6).CostOfUpgrade = gameDto.Stores.ElementAt(6).CostOfUpgrade;
+                    game.Stores.ElementAt(6).EarnMultiplier = gameDto.Stores.ElementAt(6).EarnMultiplier;
+                    game.Stores.ElementAt(6).IntervalReducer = gameDto.Stores.ElementAt(6).IntervalReducer;
+                    game.Stores.ElementAt(6).hasManager = gameDto.Stores.ElementAt(6).hasManager;
+                    if (game.Stores.ElementAt(6).hasManager)
+                    {
+                        game.Stores.ElementAt(6).ManagerSet();
+                    }
+                    game.Stores.ElementAt(6).hasBoughtMultiplier = gameDto.Stores.ElementAt(6).hasBoughtMultiplier;
+                    game.Stores.ElementAt(6).Num_Upgrades = gameDto.Stores.ElementAt(6).Num_Upgrades;
+
+                    game.Stores.ElementAt(7).ProgressBar.Value = gameDto.Stores.ElementAt(7).ProgressBar.Value;
+                    game.Stores.ElementAt(7).UpgradeButton.Text = gameDto.Stores.ElementAt(7).Button.Text;
+                    game.Stores.ElementAt(7).Label.Text = gameDto.Stores.ElementAt(7).Label.Text;
+                    game.Stores.ElementAt(7).EarnLabel.Text = gameDto.Stores.ElementAt(7).Label2.Text;
+                    game.Stores.ElementAt(7).Interval = gameDto.Stores.ElementAt(7).Interval;
+                    game.Stores.ElementAt(7).MoneyMaking = gameDto.Stores.ElementAt(7).MoneyMaking;
+                    game.Stores.ElementAt(7).IsBought = gameDto.Stores.ElementAt(7).IsBought;
+                    game.Stores.ElementAt(7).BaseCost = gameDto.Stores.ElementAt(7).BaseCost;
+                    game.Stores.ElementAt(7).Clicked = gameDto.Stores.ElementAt(7).Clicked;
+                    game.Stores.ElementAt(7).BaseInterval = gameDto.Stores.ElementAt(7).BaseInterval;
+                    game.Stores.ElementAt(7).CostOfUpgrade = gameDto.Stores.ElementAt(7).CostOfUpgrade;
+                    game.Stores.ElementAt(7).EarnMultiplier = gameDto.Stores.ElementAt(7).EarnMultiplier;
+                    game.Stores.ElementAt(7).IntervalReducer = gameDto.Stores.ElementAt(7).IntervalReducer;
+                    game.Stores.ElementAt(7).hasManager = gameDto.Stores.ElementAt(7).hasManager;
+                    if (game.Stores.ElementAt(7).hasManager)
+                    {
+                        game.Stores.ElementAt(7).ManagerSet();
+                    }
+                    game.Stores.ElementAt(7).hasBoughtMultiplier = gameDto.Stores.ElementAt(7).hasBoughtMultiplier;
+                    game.Stores.ElementAt(7).Num_Upgrades = gameDto.Stores.ElementAt(7).Num_Upgrades;
+
+                    game.Stores.ElementAt(8).ProgressBar.Value = gameDto.Stores.ElementAt(8).ProgressBar.Value;
+                    game.Stores.ElementAt(8).UpgradeButton.Text = gameDto.Stores.ElementAt(8).Button.Text;
+                    game.Stores.ElementAt(8).Label.Text = gameDto.Stores.ElementAt(8).Label.Text;
+                    game.Stores.ElementAt(8).EarnLabel.Text = gameDto.Stores.ElementAt(8).Label2.Text;
+                    game.Stores.ElementAt(8).Interval = gameDto.Stores.ElementAt(8).Interval;
+                    game.Stores.ElementAt(8).MoneyMaking = gameDto.Stores.ElementAt(8).MoneyMaking;
+                    game.Stores.ElementAt(8).IsBought = gameDto.Stores.ElementAt(8).IsBought;
+                    game.Stores.ElementAt(8).BaseCost = gameDto.Stores.ElementAt(8).BaseCost;
+                    game.Stores.ElementAt(8).Clicked = gameDto.Stores.ElementAt(8).Clicked;
+                    game.Stores.ElementAt(8).BaseInterval = gameDto.Stores.ElementAt(8).BaseInterval;
+                    game.Stores.ElementAt(8).CostOfUpgrade = gameDto.Stores.ElementAt(8).CostOfUpgrade;
+                    game.Stores.ElementAt(8).EarnMultiplier = gameDto.Stores.ElementAt(8).EarnMultiplier;
+                    game.Stores.ElementAt(8).IntervalReducer = gameDto.Stores.ElementAt(8).IntervalReducer;
+                    game.Stores.ElementAt(8).hasManager = gameDto.Stores.ElementAt(8).hasManager;
+                    if (game.Stores.ElementAt(8).hasManager)
+                    {
+                        game.Stores.ElementAt(8).ManagerSet();
+                    }
+                    game.Stores.ElementAt(8).hasBoughtMultiplier = gameDto.Stores.ElementAt(8).hasBoughtMultiplier;
+                    game.Stores.ElementAt(8).Num_Upgrades = gameDto.Stores.ElementAt(8).Num_Upgrades;
+
+                    game.Stores.ElementAt(9).ProgressBar.Value = gameDto.Stores.ElementAt(9).ProgressBar.Value;
+                    game.Stores.ElementAt(9).UpgradeButton.Text = gameDto.Stores.ElementAt(9).Button.Text;
+                    game.Stores.ElementAt(9).Label.Text = gameDto.Stores.ElementAt(9).Label.Text;
+                    game.Stores.ElementAt(9).EarnLabel.Text = gameDto.Stores.ElementAt(9).Label2.Text;
+                    game.Stores.ElementAt(9).Interval = gameDto.Stores.ElementAt(9).Interval;
+                    game.Stores.ElementAt(9).MoneyMaking = gameDto.Stores.ElementAt(9).MoneyMaking;
+                    game.Stores.ElementAt(9).IsBought = gameDto.Stores.ElementAt(9).IsBought;
+                    game.Stores.ElementAt(9).BaseCost = gameDto.Stores.ElementAt(9).BaseCost;
+                    game.Stores.ElementAt(9).Clicked = gameDto.Stores.ElementAt(9).Clicked;
+                    game.Stores.ElementAt(9).BaseInterval = gameDto.Stores.ElementAt(9).BaseInterval;
+                    game.Stores.ElementAt(9).CostOfUpgrade = gameDto.Stores.ElementAt(9).CostOfUpgrade;
+                    game.Stores.ElementAt(9).EarnMultiplier = gameDto.Stores.ElementAt(9).EarnMultiplier;
+                    game.Stores.ElementAt(9).IntervalReducer = gameDto.Stores.ElementAt(9).IntervalReducer;
+                    game.Stores.ElementAt(9).hasManager = gameDto.Stores.ElementAt(9).hasManager;
+                    if (game.Stores.ElementAt(9).hasManager)
+                    {
+                        game.Stores.ElementAt(9).ManagerSet();
+                    }
+                    game.Stores.ElementAt(9).hasBoughtMultiplier = gameDto.Stores.ElementAt(9).hasBoughtMultiplier;
+                    game.Stores.ElementAt(9).Num_Upgrades = gameDto.Stores.ElementAt(9).Num_Upgrades;
                     game.Update();
                 }
                 catch (Exception ex)

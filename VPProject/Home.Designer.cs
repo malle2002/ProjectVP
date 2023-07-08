@@ -53,6 +53,48 @@
             this.ManagersButton = new System.Windows.Forms.Button();
             this.CloseButton = new System.Windows.Forms.Button();
             this.LoginLabel = new System.Windows.Forms.Label();
+            this.PizzaLevel = new System.Windows.Forms.Label();
+            this.PizzaProgressBar = new VPProject.CustomProgressBar();
+            this.PizzaEarnsYouLabel = new System.Windows.Forms.Label();
+            this.PizzaButton = new System.Windows.Forms.Button();
+            this.PizzaLabel = new System.Windows.Forms.Label();
+            this.DonutLevel = new System.Windows.Forms.Label();
+            this.DonutProgressBar = new VPProject.CustomProgressBar();
+            this.DonutEarnsYouLabel = new System.Windows.Forms.Label();
+            this.DonutButton = new System.Windows.Forms.Button();
+            this.DonutLabel = new System.Windows.Forms.Label();
+            this.ShrimpLevel = new System.Windows.Forms.Label();
+            this.ShrimpProgressBar = new VPProject.CustomProgressBar();
+            this.ShrimpEarnsYouLabel = new System.Windows.Forms.Label();
+            this.ShrimpButton = new System.Windows.Forms.Button();
+            this.ShrimpLabel = new System.Windows.Forms.Label();
+            this.HockeyLevel = new System.Windows.Forms.Label();
+            this.HockeyProgressBar = new VPProject.CustomProgressBar();
+            this.HockeyEarnsYouLabel = new System.Windows.Forms.Label();
+            this.HockeyButton = new System.Windows.Forms.Button();
+            this.HockeyLabel = new System.Windows.Forms.Label();
+            this.MovieLevel = new System.Windows.Forms.Label();
+            this.MovieProgressBar = new VPProject.CustomProgressBar();
+            this.MovieEarnsYouLabel = new System.Windows.Forms.Label();
+            this.MovieButton = new System.Windows.Forms.Button();
+            this.MovieLabel = new System.Windows.Forms.Label();
+            this.BankLevel = new System.Windows.Forms.Label();
+            this.BankProgressBar = new VPProject.CustomProgressBar();
+            this.BankEarnsYouLabel = new System.Windows.Forms.Label();
+            this.BankButton = new System.Windows.Forms.Button();
+            this.BankLabel = new System.Windows.Forms.Label();
+            this.OilCompanyLevel = new System.Windows.Forms.Label();
+            this.OilCompanyProgressBar = new VPProject.CustomProgressBar();
+            this.OilCompanyEarnsYouLabel = new System.Windows.Forms.Label();
+            this.OilCompanyButton = new System.Windows.Forms.Button();
+            this.OilCompanyLabel = new System.Windows.Forms.Label();
+            this.PizzaTimer = new System.Windows.Forms.Timer(this.components);
+            this.DonutTimer = new System.Windows.Forms.Timer(this.components);
+            this.ShrimpTimer = new System.Windows.Forms.Timer(this.components);
+            this.HockeyTimer = new System.Windows.Forms.Timer(this.components);
+            this.MovieTimer = new System.Windows.Forms.Timer(this.components);
+            this.BankTimer = new System.Windows.Forms.Timer(this.components);
+            this.OilCompanyTimer = new System.Windows.Forms.Timer(this.components);
             this.TopPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -96,7 +138,7 @@
             // 
             this.InfoLabel.AutoSize = true;
             this.InfoLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.InfoLabel.Location = new System.Drawing.Point(0, 437);
+            this.InfoLabel.Location = new System.Drawing.Point(0, 569);
             this.InfoLabel.Name = "InfoLabel";
             this.InfoLabel.Size = new System.Drawing.Size(0, 13);
             this.InfoLabel.TabIndex = 11;
@@ -165,9 +207,9 @@
             this.CarWashEarnsYouLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CarWashEarnsYouLabel.Location = new System.Drawing.Point(28, 276);
             this.CarWashEarnsYouLabel.Name = "CarWashEarnsYouLabel";
-            this.CarWashEarnsYouLabel.Size = new System.Drawing.Size(145, 16);
+            this.CarWashEarnsYouLabel.Size = new System.Drawing.Size(134, 16);
             this.CarWashEarnsYouLabel.TabIndex = 20;
-            this.CarWashEarnsYouLabel.Text = "Newspaper Earn Label";
+            this.CarWashEarnsYouLabel.Text = "Car Wash Earn Label";
             // 
             // CarWashButton
             // 
@@ -285,12 +327,404 @@
             this.LoginLabel.TabIndex = 0;
             this.LoginLabel.Text = "Capitalist";
             // 
+            // PizzaLevel
+            // 
+            this.PizzaLevel.AutoSize = true;
+            this.PizzaLevel.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PizzaLevel.Location = new System.Drawing.Point(230, 358);
+            this.PizzaLevel.Name = "PizzaLevel";
+            this.PizzaLevel.Size = new System.Drawing.Size(115, 23);
+            this.PizzaLevel.TabIndex = 28;
+            this.PizzaLevel.Text = "Pizza Level";
+            // 
+            // PizzaProgressBar
+            // 
+            this.PizzaProgressBar.ChannelColor = System.Drawing.Color.LightSteelBlue;
+            this.PizzaProgressBar.ChannelHeight = 6;
+            this.PizzaProgressBar.ForeBackColor = System.Drawing.Color.RoyalBlue;
+            this.PizzaProgressBar.ForeColor = System.Drawing.Color.White;
+            this.PizzaProgressBar.Location = new System.Drawing.Point(28, 393);
+            this.PizzaProgressBar.Name = "PizzaProgressBar";
+            this.PizzaProgressBar.Size = new System.Drawing.Size(170, 13);
+            this.PizzaProgressBar.SliderColor = System.Drawing.Color.RoyalBlue;
+            this.PizzaProgressBar.SliderHeight = 6;
+            this.PizzaProgressBar.TabIndex = 27;
+            // 
+            // PizzaEarnsYouLabel
+            // 
+            this.PizzaEarnsYouLabel.AutoSize = true;
+            this.PizzaEarnsYouLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PizzaEarnsYouLabel.Location = new System.Drawing.Point(28, 374);
+            this.PizzaEarnsYouLabel.Name = "PizzaEarnsYouLabel";
+            this.PizzaEarnsYouLabel.Size = new System.Drawing.Size(175, 16);
+            this.PizzaEarnsYouLabel.TabIndex = 26;
+            this.PizzaEarnsYouLabel.Text = "Pizza Restourant Earn Label";
+            // 
+            // PizzaButton
+            // 
+            this.PizzaButton.Location = new System.Drawing.Point(230, 384);
+            this.PizzaButton.Name = "PizzaButton";
+            this.PizzaButton.Size = new System.Drawing.Size(118, 42);
+            this.PizzaButton.TabIndex = 25;
+            this.PizzaButton.UseVisualStyleBackColor = true;
+            // 
+            // PizzaLabel
+            // 
+            this.PizzaLabel.AutoSize = true;
+            this.PizzaLabel.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PizzaLabel.Location = new System.Drawing.Point(28, 351);
+            this.PizzaLabel.Name = "PizzaLabel";
+            this.PizzaLabel.Size = new System.Drawing.Size(167, 23);
+            this.PizzaLabel.TabIndex = 24;
+            this.PizzaLabel.Text = "Pizza Restaurant";
+            // 
+            // DonutLevel
+            // 
+            this.DonutLevel.AutoSize = true;
+            this.DonutLevel.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DonutLevel.Location = new System.Drawing.Point(230, 460);
+            this.DonutLevel.Name = "DonutLevel";
+            this.DonutLevel.Size = new System.Drawing.Size(125, 23);
+            this.DonutLevel.TabIndex = 33;
+            this.DonutLevel.Text = "Donut Level";
+            // 
+            // DonutProgressBar
+            // 
+            this.DonutProgressBar.ChannelColor = System.Drawing.Color.LightSteelBlue;
+            this.DonutProgressBar.ChannelHeight = 6;
+            this.DonutProgressBar.ForeBackColor = System.Drawing.Color.RoyalBlue;
+            this.DonutProgressBar.ForeColor = System.Drawing.Color.White;
+            this.DonutProgressBar.Location = new System.Drawing.Point(28, 495);
+            this.DonutProgressBar.Name = "DonutProgressBar";
+            this.DonutProgressBar.Size = new System.Drawing.Size(170, 13);
+            this.DonutProgressBar.SliderColor = System.Drawing.Color.RoyalBlue;
+            this.DonutProgressBar.SliderHeight = 6;
+            this.DonutProgressBar.TabIndex = 32;
+            // 
+            // DonutEarnsYouLabel
+            // 
+            this.DonutEarnsYouLabel.AutoSize = true;
+            this.DonutEarnsYouLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DonutEarnsYouLabel.Location = new System.Drawing.Point(28, 476);
+            this.DonutEarnsYouLabel.Name = "DonutEarnsYouLabel";
+            this.DonutEarnsYouLabel.Size = new System.Drawing.Size(110, 16);
+            this.DonutEarnsYouLabel.TabIndex = 31;
+            this.DonutEarnsYouLabel.Text = "Donut Earn Label";
+            // 
+            // DonutButton
+            // 
+            this.DonutButton.Location = new System.Drawing.Point(230, 486);
+            this.DonutButton.Name = "DonutButton";
+            this.DonutButton.Size = new System.Drawing.Size(118, 42);
+            this.DonutButton.TabIndex = 30;
+            this.DonutButton.UseVisualStyleBackColor = true;
+            // 
+            // DonutLabel
+            // 
+            this.DonutLabel.AutoSize = true;
+            this.DonutLabel.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DonutLabel.Location = new System.Drawing.Point(28, 453);
+            this.DonutLabel.Name = "DonutLabel";
+            this.DonutLabel.Size = new System.Drawing.Size(124, 23);
+            this.DonutLabel.TabIndex = 29;
+            this.DonutLabel.Text = "Donut Shop";
+            // 
+            // ShrimpLevel
+            // 
+            this.ShrimpLevel.AutoSize = true;
+            this.ShrimpLevel.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ShrimpLevel.Location = new System.Drawing.Point(635, 79);
+            this.ShrimpLevel.Name = "ShrimpLevel";
+            this.ShrimpLevel.Size = new System.Drawing.Size(136, 23);
+            this.ShrimpLevel.TabIndex = 38;
+            this.ShrimpLevel.Text = "Shrimp Level";
+            // 
+            // ShrimpProgressBar
+            // 
+            this.ShrimpProgressBar.ChannelColor = System.Drawing.Color.LightSteelBlue;
+            this.ShrimpProgressBar.ChannelHeight = 6;
+            this.ShrimpProgressBar.ForeBackColor = System.Drawing.Color.RoyalBlue;
+            this.ShrimpProgressBar.ForeColor = System.Drawing.Color.White;
+            this.ShrimpProgressBar.Location = new System.Drawing.Point(433, 114);
+            this.ShrimpProgressBar.Name = "ShrimpProgressBar";
+            this.ShrimpProgressBar.Size = new System.Drawing.Size(170, 13);
+            this.ShrimpProgressBar.SliderColor = System.Drawing.Color.RoyalBlue;
+            this.ShrimpProgressBar.SliderHeight = 6;
+            this.ShrimpProgressBar.TabIndex = 37;
+            // 
+            // ShrimpEarnsYouLabel
+            // 
+            this.ShrimpEarnsYouLabel.AutoSize = true;
+            this.ShrimpEarnsYouLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ShrimpEarnsYouLabel.Location = new System.Drawing.Point(433, 95);
+            this.ShrimpEarnsYouLabel.Name = "ShrimpEarnsYouLabel";
+            this.ShrimpEarnsYouLabel.Size = new System.Drawing.Size(117, 16);
+            this.ShrimpEarnsYouLabel.TabIndex = 36;
+            this.ShrimpEarnsYouLabel.Text = "Shrimp Earn Label";
+            // 
+            // ShrimpButton
+            // 
+            this.ShrimpButton.Location = new System.Drawing.Point(635, 105);
+            this.ShrimpButton.Name = "ShrimpButton";
+            this.ShrimpButton.Size = new System.Drawing.Size(118, 42);
+            this.ShrimpButton.TabIndex = 35;
+            this.ShrimpButton.UseVisualStyleBackColor = true;
+            // 
+            // ShrimpLabel
+            // 
+            this.ShrimpLabel.AutoSize = true;
+            this.ShrimpLabel.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ShrimpLabel.Location = new System.Drawing.Point(433, 72);
+            this.ShrimpLabel.Name = "ShrimpLabel";
+            this.ShrimpLabel.Size = new System.Drawing.Size(135, 23);
+            this.ShrimpLabel.TabIndex = 34;
+            this.ShrimpLabel.Text = "Shrimp Shop";
+            // 
+            // HockeyLevel
+            // 
+            this.HockeyLevel.AutoSize = true;
+            this.HockeyLevel.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HockeyLevel.Location = new System.Drawing.Point(635, 168);
+            this.HockeyLevel.Name = "HockeyLevel";
+            this.HockeyLevel.Size = new System.Drawing.Size(136, 23);
+            this.HockeyLevel.TabIndex = 43;
+            this.HockeyLevel.Text = "Hockey Level";
+            // 
+            // HockeyProgressBar
+            // 
+            this.HockeyProgressBar.ChannelColor = System.Drawing.Color.LightSteelBlue;
+            this.HockeyProgressBar.ChannelHeight = 6;
+            this.HockeyProgressBar.ForeBackColor = System.Drawing.Color.RoyalBlue;
+            this.HockeyProgressBar.ForeColor = System.Drawing.Color.White;
+            this.HockeyProgressBar.Location = new System.Drawing.Point(433, 203);
+            this.HockeyProgressBar.Name = "HockeyProgressBar";
+            this.HockeyProgressBar.Size = new System.Drawing.Size(170, 13);
+            this.HockeyProgressBar.SliderColor = System.Drawing.Color.RoyalBlue;
+            this.HockeyProgressBar.SliderHeight = 6;
+            this.HockeyProgressBar.TabIndex = 42;
+            // 
+            // HockeyEarnsYouLabel
+            // 
+            this.HockeyEarnsYouLabel.AutoSize = true;
+            this.HockeyEarnsYouLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HockeyEarnsYouLabel.Location = new System.Drawing.Point(433, 184);
+            this.HockeyEarnsYouLabel.Name = "HockeyEarnsYouLabel";
+            this.HockeyEarnsYouLabel.Size = new System.Drawing.Size(122, 16);
+            this.HockeyEarnsYouLabel.TabIndex = 41;
+            this.HockeyEarnsYouLabel.Text = "Hockey Earn Label";
+            // 
+            // HockeyButton
+            // 
+            this.HockeyButton.Location = new System.Drawing.Point(635, 194);
+            this.HockeyButton.Name = "HockeyButton";
+            this.HockeyButton.Size = new System.Drawing.Size(118, 42);
+            this.HockeyButton.TabIndex = 40;
+            this.HockeyButton.UseVisualStyleBackColor = true;
+            // 
+            // HockeyLabel
+            // 
+            this.HockeyLabel.AutoSize = true;
+            this.HockeyLabel.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HockeyLabel.Location = new System.Drawing.Point(433, 161);
+            this.HockeyLabel.Name = "HockeyLabel";
+            this.HockeyLabel.Size = new System.Drawing.Size(136, 23);
+            this.HockeyLabel.TabIndex = 39;
+            this.HockeyLabel.Text = "Hockey Team";
+            // 
+            // MovieLevel
+            // 
+            this.MovieLevel.AutoSize = true;
+            this.MovieLevel.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MovieLevel.Location = new System.Drawing.Point(635, 260);
+            this.MovieLevel.Name = "MovieLevel";
+            this.MovieLevel.Size = new System.Drawing.Size(123, 23);
+            this.MovieLevel.TabIndex = 48;
+            this.MovieLevel.Text = "Movie Level";
+            // 
+            // MovieProgressBar
+            // 
+            this.MovieProgressBar.ChannelColor = System.Drawing.Color.LightSteelBlue;
+            this.MovieProgressBar.ChannelHeight = 6;
+            this.MovieProgressBar.ForeBackColor = System.Drawing.Color.RoyalBlue;
+            this.MovieProgressBar.ForeColor = System.Drawing.Color.White;
+            this.MovieProgressBar.Location = new System.Drawing.Point(433, 295);
+            this.MovieProgressBar.Name = "MovieProgressBar";
+            this.MovieProgressBar.Size = new System.Drawing.Size(170, 13);
+            this.MovieProgressBar.SliderColor = System.Drawing.Color.RoyalBlue;
+            this.MovieProgressBar.SliderHeight = 6;
+            this.MovieProgressBar.TabIndex = 47;
+            // 
+            // MovieEarnsYouLabel
+            // 
+            this.MovieEarnsYouLabel.AutoSize = true;
+            this.MovieEarnsYouLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MovieEarnsYouLabel.Location = new System.Drawing.Point(433, 276);
+            this.MovieEarnsYouLabel.Name = "MovieEarnsYouLabel";
+            this.MovieEarnsYouLabel.Size = new System.Drawing.Size(112, 16);
+            this.MovieEarnsYouLabel.TabIndex = 46;
+            this.MovieEarnsYouLabel.Text = "Movie Earn Label";
+            // 
+            // MovieButton
+            // 
+            this.MovieButton.Location = new System.Drawing.Point(635, 286);
+            this.MovieButton.Name = "MovieButton";
+            this.MovieButton.Size = new System.Drawing.Size(118, 42);
+            this.MovieButton.TabIndex = 45;
+            this.MovieButton.UseVisualStyleBackColor = true;
+            // 
+            // MovieLabel
+            // 
+            this.MovieLabel.AutoSize = true;
+            this.MovieLabel.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MovieLabel.Location = new System.Drawing.Point(433, 253);
+            this.MovieLabel.Name = "MovieLabel";
+            this.MovieLabel.Size = new System.Drawing.Size(135, 23);
+            this.MovieLabel.TabIndex = 44;
+            this.MovieLabel.Text = "Movie Studio";
+            // 
+            // BankLevel
+            // 
+            this.BankLevel.AutoSize = true;
+            this.BankLevel.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BankLevel.Location = new System.Drawing.Point(635, 358);
+            this.BankLevel.Name = "BankLevel";
+            this.BankLevel.Size = new System.Drawing.Size(114, 23);
+            this.BankLevel.TabIndex = 53;
+            this.BankLevel.Text = "Bank Level";
+            // 
+            // BankProgressBar
+            // 
+            this.BankProgressBar.ChannelColor = System.Drawing.Color.LightSteelBlue;
+            this.BankProgressBar.ChannelHeight = 6;
+            this.BankProgressBar.ForeBackColor = System.Drawing.Color.RoyalBlue;
+            this.BankProgressBar.ForeColor = System.Drawing.Color.White;
+            this.BankProgressBar.Location = new System.Drawing.Point(433, 393);
+            this.BankProgressBar.Name = "BankProgressBar";
+            this.BankProgressBar.Size = new System.Drawing.Size(170, 13);
+            this.BankProgressBar.SliderColor = System.Drawing.Color.RoyalBlue;
+            this.BankProgressBar.SliderHeight = 6;
+            this.BankProgressBar.TabIndex = 52;
+            // 
+            // BankEarnsYouLabel
+            // 
+            this.BankEarnsYouLabel.AutoSize = true;
+            this.BankEarnsYouLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BankEarnsYouLabel.Location = new System.Drawing.Point(433, 374);
+            this.BankEarnsYouLabel.Name = "BankEarnsYouLabel";
+            this.BankEarnsYouLabel.Size = new System.Drawing.Size(106, 16);
+            this.BankEarnsYouLabel.TabIndex = 51;
+            this.BankEarnsYouLabel.Text = "Bank Earn Label";
+            // 
+            // BankButton
+            // 
+            this.BankButton.Location = new System.Drawing.Point(635, 384);
+            this.BankButton.Name = "BankButton";
+            this.BankButton.Size = new System.Drawing.Size(118, 42);
+            this.BankButton.TabIndex = 50;
+            this.BankButton.UseVisualStyleBackColor = true;
+            // 
+            // BankLabel
+            // 
+            this.BankLabel.AutoSize = true;
+            this.BankLabel.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BankLabel.Location = new System.Drawing.Point(433, 351);
+            this.BankLabel.Name = "BankLabel";
+            this.BankLabel.Size = new System.Drawing.Size(57, 23);
+            this.BankLabel.TabIndex = 49;
+            this.BankLabel.Text = "Bank";
+            // 
+            // OilCompanyLevel
+            // 
+            this.OilCompanyLevel.AutoSize = true;
+            this.OilCompanyLevel.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OilCompanyLevel.Location = new System.Drawing.Point(635, 460);
+            this.OilCompanyLevel.Name = "OilCompanyLevel";
+            this.OilCompanyLevel.Size = new System.Drawing.Size(94, 23);
+            this.OilCompanyLevel.TabIndex = 58;
+            this.OilCompanyLevel.Text = "Oil Level";
+            // 
+            // OilCompanyProgressBar
+            // 
+            this.OilCompanyProgressBar.ChannelColor = System.Drawing.Color.LightSteelBlue;
+            this.OilCompanyProgressBar.ChannelHeight = 6;
+            this.OilCompanyProgressBar.ForeBackColor = System.Drawing.Color.RoyalBlue;
+            this.OilCompanyProgressBar.ForeColor = System.Drawing.Color.White;
+            this.OilCompanyProgressBar.Location = new System.Drawing.Point(433, 495);
+            this.OilCompanyProgressBar.Name = "OilCompanyProgressBar";
+            this.OilCompanyProgressBar.Size = new System.Drawing.Size(170, 13);
+            this.OilCompanyProgressBar.SliderColor = System.Drawing.Color.RoyalBlue;
+            this.OilCompanyProgressBar.SliderHeight = 6;
+            this.OilCompanyProgressBar.TabIndex = 57;
+            // 
+            // OilCompanyEarnsYouLabel
+            // 
+            this.OilCompanyEarnsYouLabel.AutoSize = true;
+            this.OilCompanyEarnsYouLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OilCompanyEarnsYouLabel.Location = new System.Drawing.Point(433, 476);
+            this.OilCompanyEarnsYouLabel.Name = "OilCompanyEarnsYouLabel";
+            this.OilCompanyEarnsYouLabel.Size = new System.Drawing.Size(91, 16);
+            this.OilCompanyEarnsYouLabel.TabIndex = 56;
+            this.OilCompanyEarnsYouLabel.Text = "Oil Earn Label";
+            // 
+            // OilCompanyButton
+            // 
+            this.OilCompanyButton.Location = new System.Drawing.Point(635, 486);
+            this.OilCompanyButton.Name = "OilCompanyButton";
+            this.OilCompanyButton.Size = new System.Drawing.Size(118, 42);
+            this.OilCompanyButton.TabIndex = 55;
+            this.OilCompanyButton.UseVisualStyleBackColor = true;
+            // 
+            // OilCompanyLabel
+            // 
+            this.OilCompanyLabel.AutoSize = true;
+            this.OilCompanyLabel.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OilCompanyLabel.Location = new System.Drawing.Point(433, 453);
+            this.OilCompanyLabel.Name = "OilCompanyLabel";
+            this.OilCompanyLabel.Size = new System.Drawing.Size(133, 23);
+            this.OilCompanyLabel.TabIndex = 54;
+            this.OilCompanyLabel.Text = "Oil Company";
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 582);
+            this.Controls.Add(this.OilCompanyLevel);
+            this.Controls.Add(this.OilCompanyProgressBar);
+            this.Controls.Add(this.OilCompanyEarnsYouLabel);
+            this.Controls.Add(this.OilCompanyButton);
+            this.Controls.Add(this.OilCompanyLabel);
+            this.Controls.Add(this.BankLevel);
+            this.Controls.Add(this.BankProgressBar);
+            this.Controls.Add(this.BankEarnsYouLabel);
+            this.Controls.Add(this.BankButton);
+            this.Controls.Add(this.BankLabel);
+            this.Controls.Add(this.MovieLevel);
+            this.Controls.Add(this.MovieProgressBar);
+            this.Controls.Add(this.MovieEarnsYouLabel);
+            this.Controls.Add(this.MovieButton);
+            this.Controls.Add(this.MovieLabel);
+            this.Controls.Add(this.HockeyLevel);
+            this.Controls.Add(this.HockeyProgressBar);
+            this.Controls.Add(this.HockeyEarnsYouLabel);
+            this.Controls.Add(this.HockeyButton);
+            this.Controls.Add(this.HockeyLabel);
+            this.Controls.Add(this.ShrimpLevel);
+            this.Controls.Add(this.ShrimpProgressBar);
+            this.Controls.Add(this.ShrimpEarnsYouLabel);
+            this.Controls.Add(this.ShrimpButton);
+            this.Controls.Add(this.ShrimpLabel);
+            this.Controls.Add(this.DonutLevel);
+            this.Controls.Add(this.DonutProgressBar);
+            this.Controls.Add(this.DonutEarnsYouLabel);
+            this.Controls.Add(this.DonutButton);
+            this.Controls.Add(this.DonutLabel);
+            this.Controls.Add(this.PizzaLevel);
+            this.Controls.Add(this.PizzaProgressBar);
+            this.Controls.Add(this.PizzaEarnsYouLabel);
+            this.Controls.Add(this.PizzaButton);
+            this.Controls.Add(this.PizzaLabel);
             this.Controls.Add(this.TopPanel);
             this.Controls.Add(this.CarWashLevel);
             this.Controls.Add(this.CarWashProgressBar);
@@ -345,5 +779,47 @@
         private System.Windows.Forms.Label LoginLabel;
         private System.Windows.Forms.Button ManagersButton;
         private System.Windows.Forms.Button ShopButton;
+        private System.Windows.Forms.Label PizzaLevel;
+        private CustomProgressBar PizzaProgressBar;
+        private System.Windows.Forms.Label PizzaEarnsYouLabel;
+        private System.Windows.Forms.Button PizzaButton;
+        private System.Windows.Forms.Label PizzaLabel;
+        private System.Windows.Forms.Label DonutLevel;
+        private CustomProgressBar DonutProgressBar;
+        private System.Windows.Forms.Label DonutEarnsYouLabel;
+        private System.Windows.Forms.Button DonutButton;
+        private System.Windows.Forms.Label DonutLabel;
+        private System.Windows.Forms.Label ShrimpLevel;
+        private CustomProgressBar ShrimpProgressBar;
+        private System.Windows.Forms.Label ShrimpEarnsYouLabel;
+        private System.Windows.Forms.Button ShrimpButton;
+        private System.Windows.Forms.Label ShrimpLabel;
+        private System.Windows.Forms.Label HockeyLevel;
+        private CustomProgressBar HockeyProgressBar;
+        private System.Windows.Forms.Label HockeyEarnsYouLabel;
+        private System.Windows.Forms.Button HockeyButton;
+        private System.Windows.Forms.Label HockeyLabel;
+        private System.Windows.Forms.Label MovieLevel;
+        private CustomProgressBar MovieProgressBar;
+        private System.Windows.Forms.Label MovieEarnsYouLabel;
+        private System.Windows.Forms.Button MovieButton;
+        private System.Windows.Forms.Label MovieLabel;
+        private System.Windows.Forms.Label BankLevel;
+        private CustomProgressBar BankProgressBar;
+        private System.Windows.Forms.Label BankEarnsYouLabel;
+        private System.Windows.Forms.Button BankButton;
+        private System.Windows.Forms.Label BankLabel;
+        private System.Windows.Forms.Label OilCompanyLevel;
+        private CustomProgressBar OilCompanyProgressBar;
+        private System.Windows.Forms.Label OilCompanyEarnsYouLabel;
+        private System.Windows.Forms.Button OilCompanyButton;
+        private System.Windows.Forms.Label OilCompanyLabel;
+        private System.Windows.Forms.Timer PizzaTimer;
+        private System.Windows.Forms.Timer DonutTimer;
+        private System.Windows.Forms.Timer ShrimpTimer;
+        private System.Windows.Forms.Timer HockeyTimer;
+        private System.Windows.Forms.Timer MovieTimer;
+        private System.Windows.Forms.Timer BankTimer;
+        private System.Windows.Forms.Timer OilCompanyTimer;
     }
 }
