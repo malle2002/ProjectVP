@@ -1,4 +1,5 @@
 # ProjectVP | Capitalist - game for money makers.
+Made by Atanas Atanasov - 216147</br>
 To start playing the game, first you need to register a account then log in with it.</br>This is done in the interaction between Login and Register Forms ( the users are stored in Database )
 </hr>
 After that you will start the game from scratch ( this is Home form ).</br>
